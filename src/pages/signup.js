@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import {
   Grid,
@@ -7,20 +7,20 @@ import {
   Button,
   CircularProgress,
 } from '@material-ui/core';
-import axios from 'axios';
 import useField from '../hooks/useField';
+import { useSelector, useDispatch } from 'react-redux';
+import { signupUser } from '../redux/actions/userActions';
 
 const Signup = (props) => {
   const email = useField('email', 'Email');
   const handle = useField('text', 'Handle');
   const password = useField('password', 'Password');
   const confirmPassword = useField('password', 'Confirm Password');
-  const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const ui = useSelector((state) => state.ui);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoading(true);
 
     const userData = {
       email: email.value,
@@ -29,16 +29,7 @@ const Signup = (props) => {
       confirmPassword: confirmPassword.value,
     };
 
-    try {
-      const res = await axios.post('/signup', userData);
-      console.log(res.data);
-      localStorage.setItem('FBToken', `Bearer ${res.data.token}`);
-      setLoading(false);
-      props.history.push('/');
-    } catch (err) {
-      setErrors(err.response.data);
-      setLoading(false);
-    }
+    dispatch(signupUser(userData, props.history));
   };
   return (
     <Grid container className='form'>
@@ -49,35 +40,35 @@ const Signup = (props) => {
           <TextField
             className='textField'
             {...email}
-            helperText={errors.email}
-            error={errors.email ? true : false}
+            helperText={ui.errors.email}
+            error={ui.errors.email ? true : false}
             fullWidth
           />
           <TextField
             className='textField'
             {...handle}
-            helperText={errors.handle}
-            error={errors.handle ? true : false}
+            helperText={ui.errors.handle}
+            error={ui.errors.handle ? true : false}
             fullWidth
           />
 
           <TextField
             className='textField'
             {...password}
-            helperText={errors.password}
-            error={errors.password ? true : false}
+            helperText={ui.errors.password}
+            error={ui.errors.password ? true : false}
             fullWidth
           />
           <TextField
             className='textField'
             {...confirmPassword}
-            helperText={errors.confirmPassword}
-            error={errors.confirmPassword ? true : false}
+            helperText={ui.errors.confirmPassword}
+            error={ui.errors.confirmPassword ? true : false}
             fullWidth
           />
-          {errors.general && (
+          {ui.errors.general && (
             <Typography variant='body2' className='customError'>
-              {errors.general}
+              {ui.errors.general}
             </Typography>
           )}
           <Button
@@ -85,10 +76,10 @@ const Signup = (props) => {
             type='submit'
             variant='contained'
             color='primary'
-            disabled={loading}
+            disabled={ui.loading}
           >
             Login
-            {loading && <CircularProgress className='progress' size={30} />}
+            {ui.loading && <CircularProgress className='progress' size={30} />}
           </Button>
           <br />
           <small>

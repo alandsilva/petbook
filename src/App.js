@@ -1,12 +1,20 @@
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import jwtDecode from 'jwt-decode';
+import axios from 'axios';
 
 //Redux
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { logoutUser, getUserData } from './redux/actions/userActions';
+import { SET_AUTHENTICATED } from './redux/types';
 
 // Components
 import Navbar from './components/Navbar';
@@ -33,19 +41,21 @@ const theme = createTheme({
   },
 });
 
-// let authenticated;
-// const token = localStorage.FBToken;
-// if (token) {
-//   const decodedToken = jwtDecode(token);
-//   if (decodedToken.exp * 1000 < Date.now()) {
-//     window.location.href = '/login';
-//     authenticated = false;
-//   } else {
-//     authenticated = true;
-//   }
-// }
+const token = localStorage.FBToken;
+if (token) {
+  const decodedToken = jwtDecode(token);
+  if (decodedToken.exp * 1000 < Date.now()) {
+    store.dispatch(logoutUser());
+    window.location.href = '/login';
+  } else {
+    store.dispatch({ type: SET_AUTHENTICATED });
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(getUserData());
+  }
+}
 
 function App() {
+  let authenticated = store.getState().user.authenticated;
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
@@ -55,8 +65,12 @@ function App() {
             <div className='container'>
               <Switch>
                 <Route exact path='/' component={Home} />
-                <Route exact path='/login' component={Login} />
-                <Route exact path='/signup' component={Signup} />
+                <Route exact path='/login'>
+                  {!authenticated ? <Login /> : <Redirect to='/' />}
+                </Route>
+                <Route exact path='/signup'>
+                  {!authenticated ? <Signup /> : <Redirect to='/' />}
+                </Route>
               </Switch>
             </div>
           </Router>
