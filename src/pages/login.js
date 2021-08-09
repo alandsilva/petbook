@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
   Grid,
   Typography,
@@ -11,10 +11,11 @@ import useField from '../hooks/useField';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
 
-const Login = (props) => {
+const Login = () => {
   const email = useField('email', 'Email');
   const password = useField('password', 'Password');
   const dispatch = useDispatch();
+  const history = useHistory();
   const ui = useSelector((state) => state.ui);
 
   const handleSubmit = async (event) => {
@@ -23,7 +24,7 @@ const Login = (props) => {
       email: email.value,
       password: password.value,
     };
-    dispatch(loginUser(userData, props.history));
+    dispatch(loginUser(userData, history));
   };
   return (
     <Grid container className='form'>

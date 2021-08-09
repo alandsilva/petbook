@@ -1,28 +1,24 @@
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { Paper, Link as MuiLink, IconButton, Tooltip } from '@material-ui/core';
 import {
-  Paper,
-  Button,
-  Typography,
-  Link as MuiLink,
-  IconButton,
-  Tooltip,
-} from '@material-ui/core';
-import { LocationOn, LinkIcon, CalendarToday, Edit } from '@material-ui/icons';
+  CalendarToday,
+  Edit,
+  KeyboardReturn,
+  Info,
+  LocationOn,
+} from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import EditDetails from './EditDetails';
 
 const Profile = () => {
   const dispatch = useDispatch();
   const {
     authenticated,
     loading,
-    credentials: { imageUrl, createdAt, userId, email, handle },
+    credentials: { imageUrl, createdAt, location, website, bio, handle },
   } = useSelector((state) => state.user);
-
-  console.log(authenticated);
-  console.log(handle);
-  console.log(imageUrl);
 
   const handleImageChange = (event) => {
     const image = event.target.files[0];
@@ -33,6 +29,10 @@ const Profile = () => {
   const handleEditPicture = () => {
     const fileInput = document.getElementById('imageInput');
     fileInput.click();
+  };
+
+  const handleLogout = () => {
+    dispatch(logoutUser());
   };
   let profileMarkup = !loading ? (
     authenticated ? (
@@ -58,6 +58,23 @@ const Profile = () => {
           <CalendarToday color='primary' />{' '}
           <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
         </div>
+        {bio && (
+          <div>
+            <Info color='primary' /> <span>{bio}</span>
+          </div>
+        )}
+        {location && (
+          <div>
+            <LocationOn color='primary' /> <span>{location}</span>
+          </div>
+        )}
+
+        <Tooltip title='Logout' placement='top'>
+          <IconButton onClick={handleLogout}>
+            <KeyboardReturn color='primary' />
+          </IconButton>
+        </Tooltip>
+        <EditDetails credentials={{ bio, location, website }} />
       </Paper>
     ) : (
       <div>Profile goes here...</div>
