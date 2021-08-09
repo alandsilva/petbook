@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Grid } from '@material-ui/core';
 
 import Post from '../components/Post';
+import Profile from '../components/Profile';
 
 const Home = () => {
   let [posts, setPosts] = useState([]);
@@ -33,7 +34,7 @@ const Home = () => {
         {recentPostsMarkup}
       </Grid>
       <Grid item sm={4} xs={12}>
-        <p>Profile...</p>
+        <Profile />
       </Grid>
     </Grid>
   );
