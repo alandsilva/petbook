@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
+    "dayjs": "^1.10.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.2.0",
@@ -40,5 +41,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-central1-petbook-cb3c1.cloudfunctions.net/api"
+  "proxy": "http://localhost:5000/petbook-cb3c1/us-central1/api/"
 }

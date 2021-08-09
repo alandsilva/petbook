@@ -22,7 +22,7 @@ const Home = () => {
 
   let recentPostsMarkup =
     posts.length > 0 ? (
-      posts.map((post) => <Post post={post} />)
+      posts.map((post) => <Post key={post.postId} post={post} />)
     ) : (
       <p>Loading...</p>
     );

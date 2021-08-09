@@ -7,6 +7,10 @@
   max-width: 1200px;
 }
 
+a {
+  text-decoration: none;
+}
+
 .card {
   display: flex;
   margin-bottom: 1rem;
@@ -21,6 +25,25 @@
   object-fit: cover;
 }
 
-a {
-  text-decoration: none;
+.form {
+  text-align: center;
+}
+
+.form .textField {
+  margin: 1rem auto;
+}
+
+.form .button {
+  margin-top: 2rem;
+  position: relative;
+}
+
+.form .customError {
+  font-size: 0.8rem;
+  color: red;
+  margin-top: 1rem;
+}
+
+.form .progress {
+  position: absolute;
 }
