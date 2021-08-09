@@ -9,12 +9,16 @@ import {
 } from '@material-ui/core';
 import axios from 'axios';
 import useField from '../hooks/useField';
+import { useSelector, useDispatch } from 'react-redux';
+import { loginUser } from '../redux/actions/userActions';
 
 const Login = (props) => {
   const email = useField('email', 'Email');
   const password = useField('password', 'Password');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState({});
+  const dispatch = useDispatch();
+  const ui = useSelector((state) => state.ui);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,16 +28,18 @@ const Login = (props) => {
       email: email.value,
       password: password.value,
     };
+    dispatch(loginUser(userData, props.history));
 
-    try {
-      const res = await axios.post('/login', userData);
-      console.log(res.data);
-      setLoading(false);
-      props.history.push('/');
-    } catch (err) {
-      setErrors(err.response.data);
-      setLoading(false);
-    }
+    // try {
+    //   const res = await axios.post('/login', userData);
+    //   console.log(res.data);
+    //   localStorage.setItem('FBToken', `Bearer ${res.data.token}`);
+    //   setLoading(false);
+    //   props.history.push('/');
+    // } catch (err) {
+    //   setErrors(err.response.data);
+    //   setLoading(false);
+    // }
   };
   return (
     <Grid container className='form'>
@@ -44,21 +50,21 @@ const Login = (props) => {
           <TextField
             className='textField'
             {...email}
-            helperText={errors.email}
-            error={errors.email ? true : false}
+            helperText={ui.errors.email}
+            error={ui.errors.email ? true : false}
             fullWidth
           />
 
           <TextField
             className='textField'
             {...password}
-            helperText={errors.password}
-            error={errors.password ? true : false}
+            helperText={ui.errors.password}
+            error={ui.errors.password ? true : false}
             fullWidth
           />
-          {errors.general && (
+          {ui.errors.general && (
             <Typography variant='body2' className='customError'>
-              {errors.general}
+              {ui.errors.general}
             </Typography>
           )}
           <Button
@@ -66,10 +72,10 @@ const Login = (props) => {
             type='submit'
             variant='contained'
             color='primary'
-            disabled={loading}
+            disabled={ui.loading}
           >
             Login
-            {loading && <CircularProgress className='progress' size={30} />}
+            {ui.loading && <CircularProgress className='progress' size={30} />}
           </Button>
           <br />
           <small>

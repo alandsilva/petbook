@@ -2,6 +2,11 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import jwtDecode from 'jwt-decode';
+
+//Redux
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 // Components
 import Navbar from './components/Navbar';
@@ -28,21 +33,35 @@ const theme = createTheme({
   },
 });
 
+// let authenticated;
+// const token = localStorage.FBToken;
+// if (token) {
+//   const decodedToken = jwtDecode(token);
+//   if (decodedToken.exp * 1000 < Date.now()) {
+//     window.location.href = '/login';
+//     authenticated = false;
+//   } else {
+//     authenticated = true;
+//   }
+// }
+
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <div className='App'>
-        <Router>
-          <Navbar />
-          <div className='container'>
-            <Switch>
-              <Route exact path='/' component={Home} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={Signup} />
-            </Switch>
-          </div>
-        </Router>
-      </div>
+      <Provider store={store}>
+        <div className='App'>
+          <Router>
+            <Navbar />
+            <div className='container'>
+              <Switch>
+                <Route exact path='/' component={Home} />
+                <Route exact path='/login' component={Login} />
+                <Route exact path='/signup' component={Signup} />
+              </Switch>
+            </div>
+          </Router>
+        </div>
+      </Provider>
     </ThemeProvider>
   );
 }
