@@ -1,32 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { Grid } from '@material-ui/core';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { getPosts } from '../redux/actions/dataActions';
 
 import Post from '../components/Post';
 import Profile from '../components/Profile';
 
 const Home = () => {
-  let [posts, setPosts] = useState([]);
+  let dispatch = useDispatch();
+  let data = useSelector((state) => state.data);
 
   useEffect(() => {
-    const fetchPosts = async () => {
-      try {
-        const res = await axios.get('/posts');
-        setPosts(res.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    dispatch(getPosts());
+  }, [dispatch]);
 
-    fetchPosts();
-  }, []);
-
-  let recentPostsMarkup =
-    posts.length > 0 ? (
-      posts.map((post) => <Post key={post.postId} post={post} />)
+  let recentPostsMarkup = !data.loading ? (
+    data.posts.length > 0 ? (
+      data.posts.map((post) => <Post key={post.postId} post={post} />)
     ) : (
-      <p>Loading...</p>
-    );
+      <p>{'[No posts available]'}</p>
+    )
+  ) : (
+    <p>Loading</p>
+  );
 
   return (
     <Grid container spacing={8}>
