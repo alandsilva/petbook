@@ -11,6 +11,8 @@ import ChatIcon from '@material-ui/icons/Chat';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
+import DeletePost from './DeletePost';
+
 const Post = (props) => {
   const {
     post: {
@@ -59,6 +61,11 @@ const Post = (props) => {
     </CustomButton>
   );
 
+  const deleteButton =
+    user.authenticated && user.credentials.handle === userHandle ? (
+      <DeletePost postId={postId} />
+    ) : null;
+
   return (
     <Card className='card'>
       <CardMedia image={userImage} title='Profile Image' className='image' />
@@ -71,6 +78,7 @@ const Post = (props) => {
         >
           {userHandle}
         </Typography>
+        {deleteButton}
         <Typography variant='body2' color='textSecondary'>
           {dayjs(createdAt).fromNow()}
         </Typography>

@@ -4,6 +4,7 @@ import {
   LIKE_POST,
   UNLIKE_POST,
   LOADING_DATA,
+  DELETE_POST,
 } from '../types';
 
 const initialState = {
@@ -27,6 +28,12 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
       };
+    case DELETE_POST:
+      return {
+        ...state,
+        posts: state.posts.filter((post) => post.postId !== action.payload),
+      };
+
     default:
       return state;
   }
