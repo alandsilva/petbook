@@ -1,6 +1,6 @@
 import {
   SET_POSTS,
-  SET_POST,
+  CREATE_POST,
   LIKE_POST,
   UNLIKE_POST,
   LOADING_DATA,
@@ -31,7 +31,14 @@ const dataReducer = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        posts: state.posts.filter((post) => post.postId !== action.payload),
+        posts: state.posts.filter(
+          (post) => post.postId !== action.payload.createdPost
+        ),
+      };
+    case CREATE_POST:
+      return {
+        ...state,
+        posts: [action.payload, ...state.posts],
       };
 
     default:

@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import CustomButton from './CustomButton';
 import HomeIcon from '@material-ui/icons/Home';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -10,9 +9,10 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
+import PostPost from './PostPost';
+
 const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated);
-  const history = useHistory();
 
   const navbarButtons = authenticated ? (
     <>
@@ -23,13 +23,9 @@ const Navbar = () => {
       >
         <HomeIcon color='accent' />
       </CustomButton>
-      <CustomButton
-        title='Add Post'
-        placement='bottom'
-        onClick={console.log('Home!')}
-      >
-        <AddBoxIcon color='accent' />
-      </CustomButton>
+
+      <PostPost />
+
       <CustomButton
         title='Notifications'
         placement='bottom'
