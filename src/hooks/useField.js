@@ -6,11 +6,16 @@ const useField = (type, label, initialValue = '') => {
     setValue(event.target.value);
   };
 
+  const clearValue = () => {
+    setValue('');
+  };
+
   return {
     type,
     label,
     value,
     onChange,
+    clearValue,
   };
 };
 

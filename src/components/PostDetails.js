@@ -10,6 +10,7 @@ import CodeIcon from '@material-ui/icons/Code';
 import CustomButton from './CustomButton';
 import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';
+import NewComment from './NewComment';
 
 const styles = (theme) => ({
   root: {
@@ -77,6 +78,7 @@ const PostDetails = (props) => {
           <PostDetailsCard post={props.post} />
         </DialogTitle>
         <DialogContent dividers>
+          <NewComment />
           <CommentList postId={props.post.postId} />
         </DialogContent>
       </Dialog>

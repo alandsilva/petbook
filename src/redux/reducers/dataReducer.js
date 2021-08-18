@@ -1,10 +1,12 @@
 import {
   SET_POSTS,
+  SET_POST,
   CREATE_POST,
   LIKE_POST,
   UNLIKE_POST,
   LOADING_DATA,
   DELETE_POST,
+  CREATE_COMMENT,
 } from '../types';
 
 const initialState = {
@@ -39,6 +41,19 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         posts: [action.payload, ...state.posts],
+      };
+    case SET_POST:
+      return {
+        ...state,
+        post: action.payload,
+      };
+    case CREATE_COMMENT:
+      return {
+        ...state,
+        post: {
+          ...state.post,
+          comments: [action.payload, ...state.post.comments],
+        },
       };
 
     default:

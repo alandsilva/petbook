@@ -7,8 +7,10 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-import axios from 'axios';
 import dayjs from 'dayjs';
+
+import { getPost } from '../redux/actions/dataActions';
+import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,45 +25,40 @@ const useStyles = makeStyles((theme) => ({
 
 const CommentList = ({ postId }) => {
   const classes = useStyles();
-  const [comments, setComments] = useState([]);
+  let dispatch = useDispatch();
+  const data = useSelector((state) => state.data);
 
   useEffect(() => {
-    const getComments = async () => {
-      try {
-        console.log('Getting comment with id: ' + postId);
-        let res = await axios.get('/posts/' + postId);
-        console.log(res.data.postData.comments);
-        setComments(res.data.postData.comments);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getComments();
-  }, []);
+    dispatch(getPost(postId));
+  }, [dispatch]);
 
-  let itemListMarkup = comments.map((comment) => (
-    <ListItem alignItems='flex-start'>
-      <ListItemAvatar>
-        <Avatar alt='Remy Sharp' src={comment.userImage} />
-      </ListItemAvatar>
-      <ListItemText
-        primary={`@${comment.userHandle}`}
-        secondary={
-          <React.Fragment>
-            <Typography
-              component='span'
-              variant='body2'
-              className={classes.inline}
-              color='textPrimary'
-            >
-              {comment.body} -
-            </Typography>
-            {` ${dayjs(comment.createdAt).format('h:mm a, DD MMM YYYY')}`}
-          </React.Fragment>
-        }
-      />
-    </ListItem>
-  ));
+  let itemListMarkup = data.post.comments ? (
+    data.post.comments.map((comment) => (
+      <ListItem alignItems='flex-start'>
+        <ListItemAvatar>
+          <Avatar alt='Remy Sharp' src={comment.userImage} />
+        </ListItemAvatar>
+        <ListItemText
+          primary={`@${comment.userHandle}`}
+          secondary={
+            <React.Fragment>
+              <Typography
+                component='span'
+                variant='body2'
+                className={classes.inline}
+                color='textPrimary'
+              >
+                {comment.body} -
+              </Typography>
+              {` ${dayjs(comment.createdAt).format('h:mm a, DD MMM YYYY')}`}
+            </React.Fragment>
+          }
+        />
+      </ListItem>
+    ))
+  ) : (
+    <p>No comments</p>
+  );
 
   return <List className={classes.root}>{itemListMarkup}</List>;
 };

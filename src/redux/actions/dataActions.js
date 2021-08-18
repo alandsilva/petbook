@@ -1,5 +1,6 @@
 import {
   SET_POSTS,
+  SET_POST,
   CREATE_POST,
   LIKE_POST,
   UNLIKE_POST,
@@ -8,6 +9,7 @@ import {
   LOADING_UI,
   SET_ERRORS,
   CLEAR_ERRORS,
+  CREATE_COMMENT,
 } from '../types';
 import axios from 'axios';
 
@@ -58,6 +60,26 @@ export const createPost = (newPost) => async (dispatch) => {
     const res = await axios.post('/posts', newPost);
     console.log(res.data);
     dispatch({ type: CREATE_POST, payload: res.data });
+    dispatch({ type: CLEAR_ERRORS });
+  } catch (err) {
+    dispatch({ type: SET_ERRORS, payload: err.response.data });
+  }
+};
+
+export const getPost = (postId) => async (dispatch) => {
+  try {
+    let res = await axios.get(`/posts/${postId}`);
+    dispatch({ type: SET_POST, payload: res.data });
+  } catch (err) {
+    dispatch({ type: SET_POST, payload: {} });
+  }
+};
+
+export const createComment = (postId, newComment) => async (dispatch) => {
+  console.log(`Will post to ${postId}`);
+  try {
+    let res = await axios.post(`/posts/${postId}/comment`, newComment);
+    dispatch({ type: CREATE_COMMENT, payload: res.data });
     dispatch({ type: CLEAR_ERRORS });
   } catch (err) {
     dispatch({ type: SET_ERRORS, payload: err.response.data });
