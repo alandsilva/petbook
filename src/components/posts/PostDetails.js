@@ -7,7 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import CodeIcon from '@material-ui/icons/Code';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../ui/CustomButton';
 import PostDetailsCard from './PostDetailsCard';
 import CommentList from './CommentList';
 import NewComment from './NewComment';

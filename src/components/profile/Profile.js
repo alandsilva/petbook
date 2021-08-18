@@ -9,7 +9,7 @@ import {
   LocationOn,
 } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import EditDetails from './EditDetails';
 
 const Profile = () => {

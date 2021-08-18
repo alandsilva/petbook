@@ -1,4 +1,5 @@
 import {
+  SET_CREDENTIALS,
   SET_USER,
   SET_AUTHENTICATED,
   SET_UNAUTHENTICATED,
@@ -13,6 +14,7 @@ const initialState = {
   credentials: {},
   likes: [],
   notifications: [],
+  user: {},
 };
 
 const userReducer = (state = initialState, action) => {
@@ -21,8 +23,13 @@ const userReducer = (state = initialState, action) => {
       return { ...state, authenticated: true };
     case SET_UNAUTHENTICATED:
       return initialState;
-    case SET_USER:
-      return { authenticated: true, loading: false, ...action.payload };
+    case SET_CREDENTIALS:
+      return {
+        ...state,
+        authenticated: true,
+        loading: false,
+        ...action.payload,
+      };
     case LOADING_USER:
       return { ...state, loading: true };
     case LIKE_POST:
@@ -42,6 +49,12 @@ const userReducer = (state = initialState, action) => {
         likes: state.likes.filter(
           (like) => like.postId !== action.payload.postId
         ),
+      };
+    case SET_USER:
+      return {
+        ...state,
+        loading: false,
+        user: action.payload,
       };
 
     default:

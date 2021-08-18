@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { likePost, unlikePost } from '../redux/actions/dataActions';
+import { likePost, unlikePost } from '../../redux/actions/dataActions';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../ui/CustomButton';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 

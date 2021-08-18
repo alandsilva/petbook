@@ -4,8 +4,8 @@ import { Grid } from '@material-ui/core';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../redux/actions/dataActions';
 
-import Post from '../components/Post';
-import Profile from '../components/Profile';
+import Post from '../components/posts/Post';
+import Profile from '../components/profile/Profile';
 
 const Home = () => {
   let dispatch = useDispatch();

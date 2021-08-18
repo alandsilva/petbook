@@ -17,12 +17,13 @@ import { logoutUser, getUserData } from './redux/actions/userActions';
 import { SET_AUTHENTICATED } from './redux/types';
 
 // Components
-import Navbar from './components/Navbar';
+import Navbar from './components/layout/Navbar';
 
 // Pages
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import User from './pages/User';
 
 const theme = createTheme({
   palette: {
@@ -71,6 +72,7 @@ function App() {
                 <Route exact path='/signup'>
                   {!authenticated ? <Signup /> : <Redirect to='/' />}
                 </Route>
+                <Route exact path='/users/:handle' component={User} />
               </Switch>
             </div>
           </Router>

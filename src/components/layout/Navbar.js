@@ -2,14 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
-import CustomButton from './CustomButton';
+import CustomButton from '../ui/CustomButton';
 import HomeIcon from '@material-ui/icons/Home';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
-import PostPost from './PostPost';
+import PostPost from '../posts/PostPost';
 
 const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated);

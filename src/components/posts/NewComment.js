@@ -5,12 +5,12 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import Typography from '@material-ui/core/Typography';
 import RateReviewIcon from '@material-ui/icons/RateReview';
-import useField from '../hooks/useField';
+import useField from '../../hooks/useField';
 import axios from 'axios';
 
 import CommentInput from './CommentInput';
 
-import { createComment } from '../redux/actions/dataActions';
+import { createComment } from '../../redux/actions/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({

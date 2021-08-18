@@ -9,14 +9,14 @@ import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import CustomButton from './CustomButton';
+import CustomButton from '../ui/CustomButton';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import CloseIcon from '@material-ui/icons/Close';
 
 import { useDispatch } from 'react-redux';
-import { createPost } from '../redux/actions/dataActions';
+import { createPost } from '../../redux/actions/dataActions';
 
-import useField from '../hooks/useField';
+import useField from '../../hooks/useField';
 
 const PostPost = () => {
   const [open, setOpen] = useState(false);

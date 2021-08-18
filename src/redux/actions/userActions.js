@@ -1,5 +1,7 @@
 import {
   SET_USER,
+  SET_POSTS,
+  SET_CREDENTIALS,
   SET_ERRORS,
   CLEAR_ERRORS,
   LOADING_UI,
@@ -47,7 +49,7 @@ export const getUserData = () => async (dispatch) => {
   try {
     const res = await axios.get('/user');
     console.log(res.data);
-    dispatch({ type: SET_USER, payload: res.data });
+    dispatch({ type: SET_CREDENTIALS, payload: res.data });
   } catch (err) {
     dispatch({ type: SET_ERRORS, payload: err.response.data });
   }
@@ -70,6 +72,19 @@ export const editUserDetails = (userDetails) => async (dispatch) => {
   try {
     await axios.post('/user', userDetails);
     dispatch(getUserData());
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUser = (handle) => async (dispatch) => {
+  dispatch({ type: LOADING_USER });
+
+  try {
+    const res = await axios.get(`/users/${handle}`);
+    console.log(res.data);
+    dispatch({ type: SET_USER, payload: res.data.user });
+    dispatch({ type: SET_POSTS, payload: res.data.posts });
   } catch (err) {
     console.log(err);
   }

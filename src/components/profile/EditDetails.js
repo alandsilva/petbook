@@ -8,9 +8,9 @@ import {
   DialogTitle,
   Tooltip,
 } from '@material-ui/core';
-import { editUserDetails } from '../redux/actions/userActions';
+import { editUserDetails } from '../../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
-import useField from '../hooks/useField';
+import useField from '../../hooks/useField';
 
 const EditDetails = ({ credentials }) => {
   const [open, setOpen] = useState(false);

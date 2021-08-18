@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 
 import dayjs from 'dayjs';
 
-import { getPost } from '../redux/actions/dataActions';
+import { getPost } from '../../redux/actions/dataActions';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
