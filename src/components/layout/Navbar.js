@@ -10,6 +10,7 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 
 import PostPost from '../posts/PostPost';
+import Notifications from '../profile/Notifications';
 
 const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated);
@@ -26,13 +27,7 @@ const Navbar = () => {
 
       <PostPost />
 
-      <CustomButton
-        title='Notifications'
-        placement='bottom'
-        onClick={console.log('Home!')}
-      >
-        <NotificationsIcon color='accent' />
-      </CustomButton>
+      <Notifications />
     </>
   ) : (
     <>

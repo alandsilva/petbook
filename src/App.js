@@ -73,6 +73,11 @@ function App() {
                   {!authenticated ? <Signup /> : <Redirect to='/' />}
                 </Route>
                 <Route exact path='/users/:handle' component={User} />
+                <Route
+                  exact
+                  path='/users/:handle/posts/:postId'
+                  component={User}
+                />
               </Switch>
             </div>
           </Router>

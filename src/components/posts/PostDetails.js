@@ -50,7 +50,7 @@ const DialogContent = withStyles((theme) => ({
 }))(MuiDialogContent);
 
 const PostDetails = (props) => {
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(props.open ? true : false);
 
   const handleClickOpen = () => {
     setOpen(true);

@@ -7,6 +7,7 @@ import {
   LOADING_UI,
   LOADING_USER,
   SET_UNAUTHENTICATED,
+  MARK_NOTIFICATIONS_READ,
 } from '../types';
 import axios from 'axios';
 
@@ -85,6 +86,15 @@ export const getUser = (handle) => async (dispatch) => {
     console.log(res.data);
     dispatch({ type: SET_USER, payload: res.data.user });
     dispatch({ type: SET_POSTS, payload: res.data.posts });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const markNotificationsRead = (notificationIds) => async (dispatch) => {
+  try {
+    await axios.post('/notifications', notificationIds);
+    dispatch({ type: MARK_NOTIFICATIONS_READ });
   } catch (err) {
     console.log(err);
   }
