@@ -18,12 +18,7 @@ const User = () => {
 
   useEffect(() => {
     dispatch(getUser(handle));
-    if (postId) {
-      postDetails = (
-        <PostDetails post={posts.filter((post) => post.postId === postId)[0]} />
-      );
-    }
-  }, [dispatch]);
+  }, [dispatch, handle]);
 
   let recentPostsMarkup = !loading ? (
     posts.length > 0 ? (

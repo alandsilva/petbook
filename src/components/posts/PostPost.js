@@ -7,7 +7,6 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import CustomButton from '../ui/CustomButton';
 import AddBoxIcon from '@material-ui/icons/AddBox';
@@ -38,9 +37,6 @@ const PostPost = () => {
 
   return (
     <>
-      <Button variant='outlined' color='primary' onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
       <CustomButton
         title='Add Post'
         placement='bottom'

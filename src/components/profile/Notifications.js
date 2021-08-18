@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import Badge from '@material-ui/core/Badge';
@@ -9,9 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import ChatIcon from '@material-ui/icons/Chat';
-import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 import dayjs from 'dayjs';
 

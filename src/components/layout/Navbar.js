@@ -3,11 +3,9 @@ import { Link } from 'react-router-dom';
 import { AppBar, Toolbar, Button } from '@material-ui/core';
 import { useSelector } from 'react-redux';
 import CustomButton from '../ui/CustomButton';
+
 import HomeIcon from '@material-ui/icons/Home';
-import AddBoxIcon from '@material-ui/icons/AddBox';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import PersonAddIcon from '@material-ui/icons/PersonAdd';
+import MuiLink from '@material-ui/core/Link';
 
 import PostPost from '../posts/PostPost';
 import Notifications from '../profile/Notifications';
@@ -17,12 +15,10 @@ const Navbar = () => {
 
   const navbarButtons = authenticated ? (
     <>
-      <CustomButton
-        title='Home'
-        placement='bottom'
-        onClick={console.log('Home!')}
-      >
-        <HomeIcon color='accent' />
+      <CustomButton title='Home' placement='bottom'>
+        <MuiLink href='/' color='inherit'>
+          <HomeIcon />
+        </MuiLink>
       </CustomButton>
 
       <PostPost />

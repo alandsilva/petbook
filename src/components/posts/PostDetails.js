@@ -26,7 +26,7 @@ const styles = (theme) => ({
 });
 
 const DialogTitle = withStyles(styles)((props) => {
-  const { children, classes, onClose, post } = props;
+  const { children, classes, onClose } = props;
   return (
     <MuiDialogTitle>
       {children}

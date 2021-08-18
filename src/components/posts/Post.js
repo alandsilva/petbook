@@ -5,8 +5,6 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 import CustomButton from '../ui/CustomButton';
 import ChatIcon from '@material-ui/icons/Chat';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 import DeletePostButton from './DeletePostButton';
 import PostDetails from './PostDetails';
