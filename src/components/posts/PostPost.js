@@ -36,34 +36,41 @@ const PostPost = () => {
   };
 
   return (
+    // <>
+    //   <CustomButton
+    //     title='Add Post'
+    //     placement='bottom'
+    //     onClick={handleClickOpen}
+    //   >
+    //     <AddBoxIcon color='accent' />
+    //   </CustomButton>
+    //   <Dialog
+    //     open={open}
+    //     onClose={handleClose}
+    //     aria-labelledby='form-dialog-title'
+    //     fullWidth
+    //   >
+    //     <DialogTitle onClose={handleClose} id='form-dialog-title'>
+    //       Add Post
+    //     </DialogTitle>
+    //     <DialogContent dividers>
+    //       <DialogContentText>What is on your mind?</DialogContentText>
+    //       <TextField autoFocus margin='dense' {...post} fullWidth />
+    //     </DialogContent>
+    //     <DialogActions>
+    //       <Button className='button' onClick={handlePost} color='primary'>
+    //         Post
+    //       </Button>
+    //       {/* {ui.loading && <CircularProgress className='progress' size={30} />} */}
+    //     </DialogActions>
+    //   </Dialog>
+    // </>
     <>
-      <CustomButton
-        title='Add Post'
-        placement='bottom'
-        onClick={handleClickOpen}
-      >
-        <AddBoxIcon color='accent' />
-      </CustomButton>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        aria-labelledby='form-dialog-title'
-        fullWidth
-      >
-        <DialogTitle onClose={handleClose} id='form-dialog-title'>
-          Add Post
-        </DialogTitle>
-        <DialogContent dividers>
-          <DialogContentText>What is on your mind?</DialogContentText>
-          <TextField autoFocus margin='dense' {...post} fullWidth />
-        </DialogContent>
-        <DialogActions>
-          <Button className='button' onClick={handlePost} color='primary'>
-            Post
-          </Button>
-          {/* {ui.loading && <CircularProgress className='progress' size={30} />} */}
-        </DialogActions>
-      </Dialog>
+      <li>
+        <a href='#' className='sidebar-link'>
+          <i className='fas fa-plus-circle'></i>
+        </a>
+      </li>
     </>
   );
 };

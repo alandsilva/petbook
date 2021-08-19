@@ -3,17 +3,16 @@
   --ff-josefin: 'Josefin Sans', sans-serif;
   --fs-big: 2.5rem;
   --fs-normal: 1.2rem;
+  --fs-small: 0.9rem;
   --fw-light: 300;
   --fw-normal: 400;
+  --fw-mid: 500;
   --ls-big: 0.15rem;
   --ls-normal: 0.1rem;
   --c-orange: #deaa86;
+  --c-primary: #deaa86;
   --c-black: rgba(0, 0, 0, 0.3);
   --c-black-light: rgba(0, 0, 0, 0.1);
-}
-
-.html {
-  font-size: 50.5%;
 }
 
 * {
@@ -35,6 +34,41 @@
 
 a {
   text-decoration: none;
+}
+
+.button {
+  display: block;
+  padding: 0.75rem 2rem;
+  outline: none;
+  border: none;
+  background-color: var(--c-primary);
+  color: #fff;
+  font-size: var(--fs-normal);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+.button:hover {
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
+}
+
+.button:disabled {
+  background-color: #aaa;
+}
+
+.button-clear {
+  display: block;
+  padding: 0.75rem 2rem;
+  outline: none;
+  border: none;
+  background-color: white;
+  color: #000;
+  font-size: var(--fs-normal);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
 .card {

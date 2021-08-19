@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {
-  Grid,
-  Typography,
-  TextField,
-  Button,
-  CircularProgress,
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import useField from '../hooks/useField';
 import { useSelector, useDispatch } from 'react-redux';
 import { loginUser } from '../redux/actions/userActions';
+import Input from '../components/ui/Input';
+import Loader from '../components/ui/Loader';
+import Card from '../components/ui/Card';
 
 const Login = () => {
   const email = useField('email', 'Email');
@@ -27,49 +24,28 @@ const Login = () => {
     dispatch(loginUser(userData, history));
   };
   return (
-    <Grid container className='form'>
-      <Grid item sm></Grid>
-      <Grid item sm sx={12}>
-        <Typography variant='h2'>Login</Typography>
-        <form noValidate onSubmit={handleSubmit}>
-          <TextField
-            className='textField'
-            {...email}
-            helperText={ui.errors.email}
-            error={ui.errors.email ? true : false}
-            fullWidth
-          />
+    <Card>
+      <h1>Login</h1>
 
-          <TextField
-            className='textField'
-            {...password}
-            helperText={ui.errors.password}
-            error={ui.errors.password ? true : false}
-            fullWidth
-          />
-          {ui.errors.general && (
-            <Typography variant='body2' className='customError'>
-              {ui.errors.general}
-            </Typography>
-          )}
-          <Button
-            className='button'
-            type='submit'
-            variant='contained'
-            color='primary'
-            disabled={ui.loading}
-          >
-            Login
-            {ui.loading && <CircularProgress className='progress' size={30} />}
-          </Button>
-          <br />
-          <small>
-            dont have an account? sign up <Link to='/signup'>here</Link>
-          </small>
-        </form>
-      </Grid>
-      <Grid item sm></Grid>
-    </Grid>
+      <form noValidate onSubmit={handleSubmit}>
+        <Input {...email} error={ui.errors.email} />
+        <Input {...password} error={ui.errors.password} />
+        {ui.errors.general && (
+          <Typography variant='body2' className='customError'>
+            {ui.errors.general}
+          </Typography>
+        )}
+        <button className='button' disabled={ui.loading}>
+          Submit
+          {ui.loading && <Loader />}
+        </button>
+
+        <br />
+        <small>
+          dont have an account? sign up <Link to='/signup'>here</Link>
+        </small>
+      </form>
+    </Card>
   );
 };
 
