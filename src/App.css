@@ -1,5 +1,31 @@
+/* general properties */
+:root {
+  --ff-josefin: 'Josefin Sans', sans-serif;
+  --fs-big: 2.5rem;
+  --fs-normal: 1.2rem;
+  --fw-light: 300;
+  --fw-normal: 400;
+  --ls-big: 0.15rem;
+  --ls-normal: 0.1rem;
+  --c-orange: #deaa86;
+  --c-black: rgba(0, 0, 0, 0.3);
+  --c-black-light: rgba(0, 0, 0, 0.1);
+}
+
+.html {
+  font-size: 50.5%;
+}
+
+* {
+  top: 0;
+}
+
 .body {
   background-color: rgb(245, 245, 245);
+  margin: 0;
+  padding: 0;
+  top: 0;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .container {
