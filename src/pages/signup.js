@@ -1,15 +1,12 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import {
-  Grid,
-  Typography,
-  TextField,
-  Button,
-  CircularProgress,
-} from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import useField from '../hooks/useField';
 import { useSelector, useDispatch } from 'react-redux';
 import { signupUser } from '../redux/actions/userActions';
+import Input from '../components/ui/Input';
+import Loader from '../components/ui/Loader';
+import Card from '../components/ui/Card';
 
 const Signup = () => {
   const email = useField('email', 'Email');
@@ -33,63 +30,28 @@ const Signup = () => {
     dispatch(signupUser(userData, history));
   };
   return (
-    <Grid container className='form'>
-      <Grid item sm></Grid>
-      <Grid item sm sx={12}>
-        <Typography variant='h2'>Login</Typography>
-        <form noValidate onSubmit={handleSubmit}>
-          <TextField
-            className='textField'
-            {...email}
-            helperText={ui.errors.email}
-            error={ui.errors.email ? true : false}
-            fullWidth
-          />
-          <TextField
-            className='textField'
-            {...handle}
-            helperText={ui.errors.handle}
-            error={ui.errors.handle ? true : false}
-            fullWidth
-          />
-
-          <TextField
-            className='textField'
-            {...password}
-            helperText={ui.errors.password}
-            error={ui.errors.password ? true : false}
-            fullWidth
-          />
-          <TextField
-            className='textField'
-            {...confirmPassword}
-            helperText={ui.errors.confirmPassword}
-            error={ui.errors.confirmPassword ? true : false}
-            fullWidth
-          />
-          {ui.errors.general && (
-            <Typography variant='body2' className='customError'>
-              {ui.errors.general}
-            </Typography>
-          )}
-          <Button
-            className='button'
-            type='submit'
-            variant='contained'
-            color='primary'
-            disabled={ui.loading}
-          >
-            Login
-            {ui.loading && <CircularProgress className='progress' size={30} />}
-          </Button>
-          <br />
-          <small>
-            already have an account? log in <Link to='/login'>here</Link>
-          </small>
-        </form>
-      </Grid>
-      <Grid item sm></Grid>
-    </Grid>
+    <Card>
+      <h1 className='title'>Signup</h1>
+      <form noValidate onSubmit={handleSubmit}>
+        <Input {...email} error={ui.errors.email} />
+        <Input {...handle} error={ui.errors.hande} />
+        <Input {...password} error={ui.errors.password} />
+        <Input {...confirmPassword} error={ui.errors.confirmPassword} />
+        {ui.errors.general && (
+          <Typography variant='body2' className='customError'>
+            {ui.errors.general}
+          </Typography>
+        )}
+        <button className='button' disabled={ui.loading}>
+          Submit
+          {ui.loading && <Loader />}
+        </button>
+        <br />
+        <small>
+          already have an account? log in <Link to='/login'>here</Link>
+        </small>
+      </form>
+    </Card>
   );
 };
 

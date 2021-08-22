@@ -1,0 +1,104 @@
+.container {
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  position: relative;
+  width: 400px;
+  height: 500px;
+  background-color: var(--clr-light);
+  border-radius: 5px;
+  box-shadow: 0 5px 15px 1px var(--c-black-light);
+  overflow: hidden;
+}
+
+.card:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 270px;
+  top: 0;
+  left: 0;
+  background-image: linear-gradient(
+    to top,
+    var(--clr-accent),
+    var(--clr-light)
+  );
+  clip-path: circle(400px at 50% -48.5%);
+}
+
+.header {
+  position: relative;
+  height: 265px;
+}
+
+.edit {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  font-size: var(--fs-body);
+  color: var(--clr-dark);
+  opacity: 0.8;
+  transition: 0.3s;
+  z-index: 3;
+}
+
+.edit:focus {
+  opacity: 1;
+}
+
+.main {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.main .image img {
+  position: relative;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.main .image {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--clr-accent);
+}
+
+.image .hover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--clr-light);
+  font-size: var(--fs-h2);
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.image:hover .hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.handle {
+  font-size: var(--fs-h3);
+  font-weight: var(--fw-mid);
+}

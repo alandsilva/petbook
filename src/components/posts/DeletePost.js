@@ -31,13 +31,9 @@ const DeletePost = (props) => {
 
   return (
     <>
-      <CustomButton
-        title='Delete Post'
-        placement='right'
-        onClick={handleClickOpen}
-      >
-        <DeleteOutlineIcon color='secondary' />
-      </CustomButton>
+      <a href='#' className='sidebar-link' onClick={handleClickOpen}>
+        <i class='fas fa-trash'></i>
+      </a>
       <Dialog
         open={open}
         onClose={handleClose}

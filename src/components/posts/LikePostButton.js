@@ -1,11 +1,5 @@
-import { Link } from 'react-router-dom';
-
 import { useDispatch, useSelector } from 'react-redux';
 import { likePost, unlikePost } from '../../redux/actions/dataActions';
-
-import CustomButton from '../ui/CustomButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 
 const LikePostButton = ({ postId }) => {
   let dispatch = useDispatch();
@@ -28,19 +22,17 @@ const LikePostButton = ({ postId }) => {
   };
 
   const likeButton = !user.authenticated ? (
-    <CustomButton title='Like' placement='top'>
-      <Link to='/login'>
-        <FavoriteBorder color='primary' />
-      </Link>
-    </CustomButton>
+    <a href='/login' className='sidebar-link'>
+      <i class='far fa-heart'></i>
+    </a>
   ) : likedPost() ? (
-    <CustomButton title='Remove Like' placement='top' onClick={handleUnlike}>
-      <FavoriteIcon color='primary' />
-    </CustomButton>
+    <a href='#' className='sidebar-link' onClick={handleUnlike}>
+      <i class='fas fa-heart'></i>
+    </a>
   ) : (
-    <CustomButton title='Like' placement='top' onClick={handleLike}>
-      <FavoriteBorder color='primary' />
-    </CustomButton>
+    <a href='#' className='sidebar-link' onClick={handleLike}>
+      <i class='far fa-heart'></i>
+    </a>
   );
 
   return likeButton;

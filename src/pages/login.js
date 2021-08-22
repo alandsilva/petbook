@@ -25,7 +25,7 @@ const Login = () => {
   };
   return (
     <Card>
-      <h1>Login</h1>
+      <h1 className='title'>Login</h1>
 
       <form noValidate onSubmit={handleSubmit}>
         <Input {...email} error={ui.errors.email} />

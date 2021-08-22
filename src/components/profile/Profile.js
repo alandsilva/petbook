@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import dayjs from 'dayjs';
-import { Paper, Link as MuiLink, IconButton, Tooltip } from '@material-ui/core';
+import { Link as MuiLink, IconButton, Tooltip } from '@material-ui/core';
 import {
   CalendarToday,
   Edit,
@@ -11,6 +11,9 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 import EditDetails from './EditDetails';
+import Card from '../ui/Card';
+
+import classes from './Profile.module.css';
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -36,24 +39,37 @@ const Profile = () => {
   };
   let profileMarkup = !loading ? (
     authenticated ? (
-      <Paper className='profile'>
-        <div className='image-wrapper'>
-          <img src={imageUrl} alt='profile' className='profile-image' />
-          <input
-            hidden
-            type='file'
-            id='imageInput'
-            onChange={handleImageChange}
-          />
-          <Tooltip title='Edit profile picture' placement='top'>
-            <IconButton onClick={handleEditPicture} className='button'>
-              <Edit color='primary' />
-            </IconButton>
-          </Tooltip>
+      <div className={classes.card}>
+        <div className={classes.header}>
+          <EditDetails credentials={{ bio, location, website }} />
+          <a href='#' className={classes.edit}>
+            <i class='fas fa-edit'></i>
+          </a>
+          <div className={classes.main}>
+            <div className={classes.image}>
+              <img src={imageUrl} alt='profileImage' />
+              <input
+                hidden
+                type='file'
+                id='imageInput'
+                onChange={handleImageChange}
+              />
+              <div className={classes.hover} onClick={handleEditPicture}>
+                <i class='fas fa-camera'></i>
+              </div>
+            </div>
+            <h3 className={classes.handle}>@{handle}</h3>
+          </div>
         </div>
-        <MuiLink component={Link} to={`/user/${handle}`}>
-          @{handle}
-        </MuiLink>
+        <div className={classes.content}>
+          <div className={classes.left}>
+            <div className={classes.title}>About</div>
+            <p className={classes.text}>{bio}</p>
+          </div>
+
+          <div className={classes.right}></div>
+        </div>
+
         <div>
           <CalendarToday color='primary' />{' '}
           <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
@@ -75,7 +91,7 @@ const Profile = () => {
           </IconButton>
         </Tooltip>
         <EditDetails credentials={{ bio, location, website }} />
-      </Paper>
+      </div>
     ) : (
       <div>Profile goes here...</div>
     )

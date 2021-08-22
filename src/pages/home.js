@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import { Grid } from '@material-ui/core';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../redux/actions/dataActions';
 
 import Post from '../components/posts/Post';
-import Profile from '../components/profile/Profile';
 
 const Home = () => {
   let dispatch = useDispatch();
@@ -25,16 +23,7 @@ const Home = () => {
     <p>Loading</p>
   );
 
-  return (
-    <Grid container spacing={8}>
-      <Grid item sm={8} xs={12}>
-        {recentPostsMarkup}
-      </Grid>
-      <Grid item sm={4} xs={12}>
-        <Profile />
-      </Grid>
-    </Grid>
-  );
+  return <div>{recentPostsMarkup}</div>;
 };
 
 export default Home;

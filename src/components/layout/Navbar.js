@@ -14,6 +14,7 @@ import './Navbar.css';
 
 const Navbar = () => {
   const authenticated = useSelector((state) => state.user.authenticated);
+  const imageUrl = useSelector((state) => state.user.credentials.imageUrl);
 
   const navbarButtons = authenticated ? (
     <>
@@ -92,6 +93,11 @@ const Navbar = () => {
 
         {authenticated && (
           <ul className='sidebar-icons-list'>
+            <li>
+              <a href='/account' className='sidebar-link'>
+                <img src={imageUrl} alt='profile-image' />
+              </a>
+            </li>
             <li>
               <a href='/' className='sidebar-link'>
                 <i class='fas fa-home'></i>

@@ -24,6 +24,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import User from './pages/User';
+import Profile from './components/profile/Profile';
 
 const theme = createTheme({
   palette: {
@@ -61,8 +62,8 @@ function App() {
     <ThemeProvider theme={theme}>
       <Provider store={store}>
         <div className='App'>
+          <Navbar />
           <Router>
-            <Navbar />
             <div className='container'>
               <Switch>
                 <Route exact path='/' component={Home} />
@@ -71,6 +72,9 @@ function App() {
                 </Route>
                 <Route exact path='/signup'>
                   {!authenticated ? <Signup /> : <Redirect to='/' />}
+                </Route>
+                <Route exact path='/account'>
+                  {authenticated ? <Profile /> : <Redirect to='/' />}
                 </Route>
                 <Route exact path='/users/:handle' component={User} />
                 <Route
