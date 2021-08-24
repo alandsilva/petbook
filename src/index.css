@@ -39,6 +39,7 @@ code {
   --fs-big: 2.5rem;
   --fs-normal: 1.2rem;
   --fs-small: 0.9rem;
+  --fs-link: 1.25rem;
 
   --ls-big: 0.15rem;
   --ls-normal: 0.1rem;
@@ -54,6 +55,7 @@ code {
     --fs-h2: 3.75rem;
     --fs-h3: 1.5rem;
     --fs-body: 1.125rem;
+    --fs-link: 1.4rem;
   }
 }
 

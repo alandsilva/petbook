@@ -1,81 +1,64 @@
-.App {
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.body {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-around;
 }
 
-.App .navbar {
-  width: 20%;
+.sidebar {
+  flex: 1 1 20%;
+  padding: 1rem;
+  border-right: 1px solid #ccc;
 }
 
-.container {
-  padding: 5rem 0;
+.main {
+  flex: 1 1 55%;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
+  overflow: auto;
+  border-right: 1px solid #ccc;
 }
 
-a {
-  text-decoration: none;
+.generic {
+  padding: 1rem;
+  flex: 1 1 25%;
 }
 
-form {
-  width: 100%;
+.page-header {
+  border-bottom: 1px solid #ccc;
+  height: 5%;
 }
 
-.title {
-  color: var(--clr-accent);
-  margin-bottom: 3rem;
-  font-family: var(--ff-secondary);
-  letter-spacing: var(--ls-normal);
-}
-
-.button {
-  display: block;
-  padding: 0.75rem 2rem;
-  outline: none;
-  border: none;
-  background-color: var(--c-primary);
-  color: #fff;
-  font-size: var(--fs-normal);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-  position: relative;
-}
-
-.button:hover {
-  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.15);
-}
-
-.button:disabled {
-  background-color: #aaa;
-}
-
-.button-clear {
-  display: block;
-  padding: 0.75rem 2rem;
-  outline: none;
-  border: none;
-  background-color: white;
-  color: #000;
-  font-size: var(--fs-normal);
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: 0.3s;
+.content {
+  overflow: auto;
 }
 
 @media (max-width: 800px) {
-  .App {
-    flex-direction: column;
-    flex-flow: column nowrap;
+  .generic {
+    display: none;
   }
-  .App .navbar {
-    height: 20%;
+
+  .sidebar {
+    flex: 1 1 10%;
   }
-  .container {
-    margin-top: 20%;
-    width: 100%;
+
+  .main {
+    flex: 1 1 90%;
+  }
+}
+
+@media (max-width: 500px) {
+  .body {
+    flex-direction: column-reverse;
   }
 }

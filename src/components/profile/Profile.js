@@ -41,10 +41,9 @@ const Profile = () => {
     authenticated ? (
       <div className={classes.card}>
         <div className={classes.header}>
-          <EditDetails credentials={{ bio, location, website }} />
-          <a href='#' className={classes.edit}>
-            <i class='fas fa-edit'></i>
-          </a>
+          <div className={classes.edit}>
+            <EditDetails credentials={{ bio, location, website }} />
+          </div>
           <div className={classes.main}>
             <div className={classes.image}>
               <img src={imageUrl} alt='profileImage' />
@@ -62,35 +61,26 @@ const Profile = () => {
           </div>
         </div>
         <div className={classes.content}>
-          <div className={classes.left}>
-            <div className={classes.title}>About</div>
-            <p className={classes.text}>{bio}</p>
-          </div>
+          <div className={classes.title}>About</div>
+          {bio && <p className={classes.text}>{bio}</p>}
 
-          <div className={classes.right}></div>
-        </div>
-
-        <div>
-          <CalendarToday color='primary' />{' '}
-          <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
-        </div>
-        {bio && (
           <div>
-            <Info color='primary' /> <span>{bio}</span>
+            <i class='far fa-calendar-alt'></i>
+            <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
           </div>
-        )}
-        {location && (
-          <div>
-            <LocationOn color='primary' /> <span>{location}</span>
-          </div>
-        )}
 
-        <Tooltip title='Logout' placement='top'>
-          <IconButton onClick={handleLogout}>
-            <KeyboardReturn color='primary' />
-          </IconButton>
-        </Tooltip>
-        <EditDetails credentials={{ bio, location, website }} />
+          {location && (
+            <div>
+              <i class='fas fa-map-pin'></i> <span>{location}</span>
+            </div>
+          )}
+
+          <div className={classes.logout}>
+            <a href='#' className='sidebar-link' onClick={handleLogout}>
+              <i class='fas fa-sign-out-alt'></i>
+            </a>
+          </div>
+        </div>
       </div>
     ) : (
       <div>Profile goes here...</div>

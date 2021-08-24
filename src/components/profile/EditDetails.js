@@ -36,11 +36,14 @@ const EditDetails = ({ credentials }) => {
 
   return (
     <div>
-      <Tooltip title='Edit account details' placement='top'>
+      {/* <Tooltip title='Edit account details' placement='top'>
         <Button variant='outlined' color='primary' onClick={handleClickOpen}>
           Edit
         </Button>
-      </Tooltip>
+      </Tooltip> */}
+      <a href='#' className='sidebar-link' onClick={handleClickOpen}>
+        <i class='fas fa-edit'></i>
+      </a>
       <Dialog
         open={open}
         onClose={handleClose}

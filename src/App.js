@@ -25,6 +25,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import User from './pages/User';
 import Profile from './components/profile/Profile';
+import PostDetails from './components/posts/PostDetails';
 
 const theme = createTheme({
   palette: {
@@ -61,7 +62,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        <div className='App'>
+        {/* <div className='App'>
           <Navbar />
           <Router>
             <div className='container'>
@@ -85,6 +86,46 @@ function App() {
               </Switch>
             </div>
           </Router>
+          <div className='user'>Hello</div>
+        </div> */}
+        <div className='App'>
+          <div className='body'>
+            <div className='sidebar'>
+              <Navbar />
+            </div>
+
+            <div className='main'>
+              <div class='page-header'>Page Header</div>
+              <div className='content'>
+                <Router>
+                  <Switch>
+                    <Route exact path='/' component={Home} />
+                    <Route exact path='/login'>
+                      {!authenticated ? <Login /> : <Redirect to='/' />}
+                    </Route>
+                    <Route exact path='/signup'>
+                      {!authenticated ? <Signup /> : <Redirect to='/' />}
+                    </Route>
+                    <Route exact path='/account'>
+                      {authenticated ? <Profile /> : <Redirect to='/' />}
+                    </Route>
+                    <Route exact path='/users/:handle' component={User} />
+                    <Route
+                      exact
+                      path='/users/:handle/posts/:postId'
+                      component={User}
+                    />
+                    <Route
+                      exact
+                      path='/posts/:postId/'
+                      component={PostDetails}
+                    />
+                  </Switch>
+                </Router>
+              </div>
+            </div>
+            <div class='generic'>Generic</div>
+          </div>
         </div>
       </Provider>
     </ThemeProvider>

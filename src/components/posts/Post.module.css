@@ -1,0 +1,55 @@
+.container {
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  padding: 1rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+  transition: 0.3s;
+}
+
+.container:hover {
+  background: #eee;
+}
+
+.image {
+  position: relative;
+  width: 10%;
+}
+
+.image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.handle,
+.date {
+  padding: 0;
+  margin: 0;
+}
+
+.handle {
+  font-size: var(--fs-body);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
