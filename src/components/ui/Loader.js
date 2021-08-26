@@ -1,11 +1,13 @@
 import React from 'react';
 
-import './Loader.css';
+import classes from './Loader.module.css';
 
 const Loader = () => {
   return (
-    <div class='loader-4 center'>
-      <span></span>
+    <div className={classes.container}>
+      <div className={classes.loader}>
+        <span></span>
+      </div>
     </div>
   );
 };

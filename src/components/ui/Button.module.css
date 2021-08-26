@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  padding: 1rem;
+  font-size: var(--fs-body);
+  letter-spacing: var(--ls-normal);
+  background: var(--clr-accent);
+  transition: 0.3s;
+  border: none;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+
+.container:disabled {
+  background: #ccc;
+}

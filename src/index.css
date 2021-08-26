@@ -15,6 +15,8 @@ code {
 *,
 *::before,
 *::after {
+  padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -25,7 +27,7 @@ code {
 
   --fw-reg: 300;
   --fw-mid: 500;
-  --fw-bold: 900;
+  --fw-bold: 700;
 
   --clr-light: #fff;
   --clr-dark: #030303;
@@ -35,6 +37,7 @@ code {
   --fs-h2: 2.25rem;
   --fs-h3: 1.25rem;
   --fs-body: 1rem;
+  --fs-caption: 0.6rem;
 
   --fs-big: 2.5rem;
   --fs-normal: 1.2rem;
@@ -56,6 +59,7 @@ code {
     --fs-h3: 1.5rem;
     --fs-body: 1.125rem;
     --fs-link: 1.4rem;
+    --fs-caption: 0.8rem;
   }
 }
 

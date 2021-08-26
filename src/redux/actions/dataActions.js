@@ -76,12 +76,16 @@ export const getPost = (postId) => async (dispatch) => {
 };
 
 export const createComment = (postId, newComment) => async (dispatch) => {
-  console.log(`Will post to ${postId}`);
+  console.log(`Will post to ${postId} with comment ${newComment}`);
   try {
-    let res = await axios.post(`/posts/${postId}/comment`, newComment);
+    let res = await axios.post(`/posts/${postId}/comment`, {
+      body: newComment,
+    });
     dispatch({ type: CREATE_COMMENT, payload: res.data });
     dispatch({ type: CLEAR_ERRORS });
+    console.log('Comment succesfully added');
   } catch (err) {
     dispatch({ type: SET_ERRORS, payload: err.response.data });
+    console.log('Error adding comment: ' + err.response.data);
   }
 };

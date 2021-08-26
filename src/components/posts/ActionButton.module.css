@@ -1,0 +1,20 @@
+.container {
+  padding: 1rem;
+  font-size: var(--fs-h3);
+  color: #bbb;
+  cursor: pointer;
+  z-index: 5;
+  transition: 0.3s;
+}
+
+.pink:hover {
+  color: pink;
+}
+
+.red:hover {
+  color: red;
+}
+
+.blue:hover {
+  color: lightblue;
+}

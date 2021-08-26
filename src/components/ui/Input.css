@@ -57,7 +57,7 @@
 .input-error {
   color: red;
   position: absolute;
-  top: 70%;
+  top: 100%;
   left: 0.8rem;
   font-size: 0.8rem;
 }

@@ -8,6 +8,9 @@ import Input from '../components/ui/Input';
 import Loader from '../components/ui/Loader';
 import Card from '../components/ui/Card';
 
+import classes from './Login.module.css';
+import Button from '../components/ui/Button';
+
 const Signup = () => {
   const email = useField('email', 'Email');
   const handle = useField('text', 'Handle');
@@ -30,28 +33,33 @@ const Signup = () => {
     dispatch(signupUser(userData, history));
   };
   return (
-    <Card>
-      <h1 className='title'>Signup</h1>
-      <form noValidate onSubmit={handleSubmit}>
-        <Input {...email} error={ui.errors.email} />
-        <Input {...handle} error={ui.errors.hande} />
-        <Input {...password} error={ui.errors.password} />
-        <Input {...confirmPassword} error={ui.errors.confirmPassword} />
-        {ui.errors.general && (
-          <Typography variant='body2' className='customError'>
-            {ui.errors.general}
-          </Typography>
-        )}
-        <button className='button' disabled={ui.loading}>
-          Submit
-          {ui.loading && <Loader />}
-        </button>
-        <br />
-        <small>
-          already have an account? log in <Link to='/login'>here</Link>
-        </small>
-      </form>
-    </Card>
+    <div className={classes.container}>
+      <Card>
+        <h1 className={classes.title}>Signup</h1>
+        <form noValidate onSubmit={handleSubmit}>
+          <Input {...email} error={ui.errors.email} />
+          <Input {...handle} error={ui.errors.hande} />
+          <Input {...password} error={ui.errors.password} />
+          <Input {...confirmPassword} error={ui.errors.confirmPassword} />
+          {ui.errors.general && (
+            <Typography variant='body2' className='customError'>
+              {ui.errors.general}
+            </Typography>
+          )}
+
+          <div className={classes.action}>
+            <Button disabled={ui.loading}>
+              Submit
+              {ui.loading && <Loader />}
+            </Button>
+          </div>
+          <br />
+          <small>
+            already have an account? log in <Link to='/login'>here</Link>
+          </small>
+        </form>
+      </Card>
+    </div>
   );
 };
 

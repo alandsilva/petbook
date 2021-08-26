@@ -6,11 +6,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import CustomButton from '../ui/CustomButton';
-import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-
 import { useDispatch } from 'react-redux';
 import { deletePost } from '../../redux/actions/dataActions';
+import ActionButton from './ActionButton';
 
 const DeletePost = (props) => {
   const dispatch = useDispatch();
@@ -31,9 +29,7 @@ const DeletePost = (props) => {
 
   return (
     <>
-      <a href='#' className='sidebar-link' onClick={handleClickOpen}>
-        <i class='fas fa-trash'></i>
-      </a>
+      <ActionButton icon='fas fa-trash' color='red' onClick={handleClickOpen} />
       <Dialog
         open={open}
         onClose={handleClose}

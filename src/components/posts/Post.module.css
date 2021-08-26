@@ -1,5 +1,4 @@
 .container {
-  border-bottom: 1px solid #ccc;
   display: flex;
   padding: 1rem;
   margin: 0 1rem;
@@ -46,6 +45,11 @@
 
 .handle {
   font-size: var(--fs-body);
+  font-weight: var(--fw-mid);
+}
+
+.date {
+  font-size: var(--fs-caption);
 }
 
 .actions {
