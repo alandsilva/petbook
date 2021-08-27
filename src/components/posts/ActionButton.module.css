@@ -1,6 +1,6 @@
 .container {
   padding: 1rem;
-  font-size: var(--fs-h3);
+  font-size: var(--fs-body);
   color: #bbb;
   cursor: pointer;
   z-index: 5;

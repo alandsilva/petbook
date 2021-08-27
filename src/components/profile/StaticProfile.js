@@ -1,7 +1,6 @@
-import { Link } from 'react-router-dom';
+import React from 'react';
+import classes from './Profile.module.css';
 import dayjs from 'dayjs';
-import { Paper, Link as MuiLink } from '@material-ui/core';
-import { CalendarToday, Info, LocationOn } from '@material-ui/icons';
 
 const StaticProfile = (props) => {
   const {
@@ -10,28 +9,28 @@ const StaticProfile = (props) => {
   } = props;
 
   let profileMarkup = !loading ? (
-    <Paper className='profile'>
-      <div className='image-wrapper'>
-        <img src={imageUrl} alt='profile' className='profile-image' />
-      </div>
-      <MuiLink component={Link} to={`/user/${handle}`}>
-        @{handle}
-      </MuiLink>
-      <div>
-        <CalendarToday color='primary' />{' '}
-        <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
-      </div>
-      {bio && (
-        <div>
-          <Info color='primary' /> <span>{bio}</span>
+    <div className={classes.container}>
+      <div className={classes.header}>
+        <div className={classes.image}>
+          <img src={imageUrl} alt='profileImage' />
         </div>
-      )}
-      {location && (
-        <div>
-          <LocationOn color='primary' /> <span>{location}</span>
+        <p className={classes.handle}>@{handle}</p>
+      </div>
+
+      <div className={classes.content}>
+        {bio && <p className={classes.bio}>{bio}</p>}
+        <div className={classes.info}>
+          <i class='far fa-calendar-alt'></i>
+          <span>Joined {dayjs(createdAt).format('MMM YYYY')}</span>
         </div>
-      )}
-    </Paper>
+
+        {location && (
+          <div className={classes.info}>
+            <i class='fas fa-map-pin'></i> <span>{location}</span>
+          </div>
+        )}
+      </div>
+    </div>
   ) : (
     <div>Loading</div>
   );

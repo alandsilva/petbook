@@ -92,11 +92,13 @@ export const getUser = (handle) => async (dispatch) => {
 };
 
 export const markNotificationsRead = (notificationIds) => async (dispatch) => {
+  console.log('Will attempt to mar as read: ' + notificationIds);
   try {
     await axios.post('/notifications', notificationIds);
     dispatch({ type: MARK_NOTIFICATIONS_READ });
+    console.log('succesful');
   } catch (err) {
-    console.log(err);
+    console.log(err.response);
   }
 };
 

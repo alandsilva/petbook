@@ -38,7 +38,10 @@ const Post = (props) => {
       <div className={classes.content}>
         <div className={classes.header}>
           <div>
-            <p className={classes.handle}>@{userHandle}</p>
+            <Link to={`/users/${userHandle}`}>
+              <p className={classes.handle}>@{userHandle}</p>
+            </Link>
+
             <p className={classes.date}>{dayjs(createdAt).fromNow()}</p>
           </div>
           <DeletePostButton postId={postId} userHandle={userHandle} />

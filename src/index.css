@@ -97,3 +97,12 @@ h2 {
 h3 {
   font-size: var(--fs-h3);
 }
+
+a a {
+  text-decoration: none;
+  color: var(--clr-accent);
+}
+
+a a:hover {
+  text-decoration: underline;
+}

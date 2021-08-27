@@ -1,0 +1,44 @@
+.header img {
+  border-radius: 1rem;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.invitation {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 1rem;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.caption {
+  font-weight: var(--fw-reg);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  background: var(--clr-light);
+  padding: 0.5rem;
+  font-size: var(--fs-body);
+  border: 1px solid #ccc;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background: var(--c-orange);
+}

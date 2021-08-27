@@ -59,7 +59,7 @@ export const createPost = (newPost) => async (dispatch) => {
   try {
     const res = await axios.post('/posts', newPost);
     console.log(res.data);
-    dispatch({ type: CREATE_POST, payload: res.data });
+    dispatch({ type: CREATE_POST, payload: res.data.createdPost });
     dispatch({ type: CLEAR_ERRORS });
   } catch (err) {
     dispatch({ type: SET_ERRORS, payload: err.response.data });

@@ -6,11 +6,11 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  Tooltip,
 } from '@material-ui/core';
 import { editUserDetails } from '../../redux/actions/userActions';
 import { useDispatch } from 'react-redux';
 import useField from '../../hooks/useField';
+import ActionButton from '../posts/ActionButton';
 
 const EditDetails = ({ credentials }) => {
   const [open, setOpen] = useState(false);
@@ -36,14 +36,12 @@ const EditDetails = ({ credentials }) => {
 
   return (
     <div>
-      {/* <Tooltip title='Edit account details' placement='top'>
-        <Button variant='outlined' color='primary' onClick={handleClickOpen}>
-          Edit
-        </Button>
-      </Tooltip> */}
-      <a href='#' className='sidebar-link' onClick={handleClickOpen}>
-        <i class='fas fa-edit'></i>
-      </a>
+      <ActionButton
+        icon='fas fa-edit'
+        color='blue'
+        onClick={handleClickOpen}
+        span='Edit'
+      />
       <Dialog
         open={open}
         onClose={handleClose}

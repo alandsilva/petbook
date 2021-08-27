@@ -1,64 +1,64 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
-
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ChatIcon from '@material-ui/icons/Chat';
-import Typography from '@material-ui/core/Typography';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { markNotificationsRead } from '../../redux/actions/userActions';
 
 import dayjs from 'dayjs';
 
-const Notification = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const history = useHistory();
+import classes from './Notifications.module.css';
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
+const Notifications = () => {
   const notifications = useSelector((state) =>
     state.user.notifications.filter(
       (notification) => notification.read === false
     )
   );
+  const dispatch = useDispatch();
+
+  const handleClose = (params) => {
+    dispatch(markNotificationsRead(params));
+  };
+
+  const handleClearAll = () => {
+    const ids = notifications.map(
+      (notification) => notification.notificationId
+    );
+    dispatch(markNotificationsRead(ids));
+  };
 
   let notificationsMarkup =
     notifications.length > 0 ? (
       notifications.map((notification) => {
         const word = notification.type === 'like' ? 'liked' : 'commented on';
         const time = dayjs(notification.createdAt).fromNow();
-        const iconColor = notification.read ? 'primary' : 'secondary';
         const icon =
           notification.type === 'like' ? (
-            <FavoriteIcon color={iconColor} />
+            <i
+              className={classes.heart + ' ' + 'fas fa-heart'}
+              class='fas fa-heart'
+            ></i>
           ) : (
-            <ChatIcon color={iconColor} />
+            <i
+              className={classes.comment + ' ' + 'fas fa-comments'}
+              class='fas fa-comments'
+            ></i>
           );
         return (
-          <MenuItem
+          <Link
+            className={classes.link}
+            to={`/posts/${notification.postId}`}
             key={notification.createdAt}
             onClick={() => {
-              handleClose();
-              history.push(
-                `/users/${notification.receiver}/posts/${notification.postId}`
-              );
+              handleClose([notification.notificationId]);
             }}
           >
-            {icon}
-            <Typography color='primary' variant='body1'>
-              @{notification.sender} {word} your post {time}
-            </Typography>
-          </MenuItem>
+            <div className={classes.notification}>
+              {icon}
+              <span color='primary' variant='body1'>
+                @{notification.sender} {word} your post {time}
+              </span>
+            </div>
+          </Link>
         );
       })
     ) : (
@@ -66,21 +66,20 @@ const Notification = () => {
     );
 
   return (
-    <>
-      <Badge badgeContent={notifications.length} color='secondary'>
-        <IconButton
-          aria-owns={anchorEl ? 'simple-menu' : undefined}
-          aria-haspopup='true'
-          onClick={handleClick}
-        >
-          <NotificationsIcon />
-        </IconButton>
-      </Badge>
-      <Menu anchorEl={anchorEl} open={Boolean(anchorEl)} onClose={handleClose}>
-        {notificationsMarkup}
-      </Menu>
-    </>
+    <div className={classes.container}>
+      <div className={classes.header}>
+        <div className={classes.bell}>
+          <i className='fas fa-bell'></i>
+          <span className={classes.badge}>{notifications.length}</span>
+        </div>
+        <p onClick={handleClearAll} className={classes.clear}>
+          Clear All
+        </p>
+      </div>
+
+      <div className={classes.content}>{notificationsMarkup}</div>
+    </div>
   );
 };
 
-export default Notification;
+export default Notifications;

@@ -1,0 +1,11 @@
+.container {
+  padding: 1rem;
+  font-weight: var(--fw-mid);
+  font-size: var(--fs-h3);
+}
+
+.container i {
+  padding: 0.5rem;
+  margin-right: 1rem;
+  cursor: pointer;
+}

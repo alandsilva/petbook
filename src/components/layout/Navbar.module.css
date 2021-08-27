@@ -1,4 +1,9 @@
 .container {
+  --w-line: 1.5rem;
+  --s-line: -1rem;
+}
+
+.container {
   display: flex;
   height: 100%;
   flex-direction: column;
@@ -36,7 +41,7 @@
   background-color: var(--c-orange);
   position: absolute;
   top: 0.8rem;
-  left: -2rem;
+  left: var(--s-line);
   transition: width 0.5s cubic-bezier(1, 0, 0, 1);
 }
 
@@ -47,7 +52,7 @@
   background-color: var(--c-orange);
   position: absolute;
   top: 0.8rem;
-  right: -2rem;
+  right: var(--s-line);
   transition: width 0.5s cubic-bezier(1, 0, 0, 1);
 }
 
@@ -56,16 +61,44 @@
 }
 .link:hover::before,
 .link:hover::after {
-  width: 2.5rem;
+  width: var(--w-line);
 }
 
 .item {
   position: relative;
 }
 
-@media (max-width: 800px) {
-  .container span {
+.item-mobile {
+  display: none;
+  position: relative;
+  font-size: var(--fs-h3);
+}
+
+.badge {
+  font-size: var(--fs-caption);
+  padding: 0.2rem 0.5rem;
+  position: absolute;
+  background: var(--clr-accent);
+  border-radius: 50%;
+}
+
+.modal {
+  padding: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .container {
+    --s-line: 0.6rem;
+    --w-line: 1rem;
+  }
+  .container .disappears {
     display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .item-mobile {
+    display: block;
   }
 }
 

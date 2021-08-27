@@ -4,6 +4,7 @@ import {
   Switch,
   Route,
   Redirect,
+  useLocation,
 } from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
@@ -26,6 +27,9 @@ import Signup from './pages/Signup';
 import User from './pages/User';
 import Profile from './components/profile/Profile';
 import PostDetails from './components/posts/PostDetails';
+import Banner from './components/layout/Banner';
+import Header from './components/ui/Header';
+import Notifications from './components/profile/Notifications';
 
 const theme = createTheme({
   palette: {
@@ -62,42 +66,16 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Provider store={store}>
-        {/* <div className='App'>
-          <Navbar />
-          <Router>
-            <div className='container'>
-              <Switch>
-                <Route exact path='/' component={Home} />
-                <Route exact path='/login'>
-                  {!authenticated ? <Login /> : <Redirect to='/' />}
-                </Route>
-                <Route exact path='/signup'>
-                  {!authenticated ? <Signup /> : <Redirect to='/' />}
-                </Route>
-                <Route exact path='/account'>
-                  {authenticated ? <Profile /> : <Redirect to='/' />}
-                </Route>
-                <Route exact path='/users/:handle' component={User} />
-                <Route
-                  exact
-                  path='/users/:handle/posts/:postId'
-                  component={User}
-                />
-              </Switch>
-            </div>
-          </Router>
-          <div className='user'>Hello</div>
-        </div> */}
         <div className='App'>
           <div className='body'>
-            <div className='sidebar'>
-              <Navbar />
-            </div>
-
-            <div className='main'>
-              <div class='page-header'>Page Header</div>
-              <div className='content'>
-                <Router>
+            <Router>
+              <div className='sidebar'>
+                <Navbar />
+              </div>
+              <div className='main'>
+                <Header />
+                <hr />
+                <div className='content'>
                   <Switch>
                     <Route exact path='/' component={Home} />
                     <Route exact path='/login'>
@@ -108,6 +86,9 @@ function App() {
                     </Route>
                     <Route exact path='/account'>
                       {authenticated ? <Profile /> : <Redirect to='/' />}
+                    </Route>
+                    <Route exact path='/notifications'>
+                      {authenticated ? <Notifications /> : <Redirect to='/' />}
                     </Route>
                     <Route exact path='/users/:handle' component={User} />
                     <Route
@@ -121,10 +102,12 @@ function App() {
                       component={PostDetails}
                     />
                   </Switch>
-                </Router>
+                </div>
               </div>
-            </div>
-            <div class='generic'>Generic</div>
+              <div class='generic'>
+                <Banner />
+              </div>
+            </Router>
           </div>
         </div>
       </Provider>
