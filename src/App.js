@@ -48,6 +48,9 @@ const theme = createTheme({
   },
 });
 
+axios.defaults.baseURL =
+  'https://us-central1-petbook-cb3c1.cloudfunctions.net/api';
+
 const token = localStorage.FBToken;
 if (token) {
   const decodedToken = jwtDecode(token);

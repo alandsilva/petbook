@@ -12,7 +12,7 @@ import classes from './PostDetails.module.css';
 import CommentInput from './CommentInput';
 import { createComment } from '../../redux/actions/dataActions';
 
-const PostDetails = (props) => {
+const PostDetails = () => {
   const history = useHistory();
   let comment = useField('text', 'Comment');
   let { postId } = useParams();
@@ -43,7 +43,7 @@ const PostDetails = (props) => {
     <div>
       <div className={classes.post}>
         <div className={classes.header}>
-          <img src={post.userImage} alt='user image' />
+          <img src={post.userImage} alt='user' />
           <p>@{post.userHandle}</p>
         </div>
         <div className={classes.body}>{post.body}</div>

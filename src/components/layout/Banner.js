@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import NewPost from '../posts/NewPost';
 import Notifications from '../profile/Notifications';
 
@@ -24,7 +25,9 @@ const Banner = () => {
         <h3 className={classes.title}>New to Petbook?</h3>
         <p className={classes.caption}>Sign up to get started</p>
         <div className={classes.buttons}>
-          <button className={classes.button}>sign up with email</button>
+          <Link to='/signup' className={classes.button}>
+            sign up with email
+          </Link>
         </div>
       </div>
 
@@ -32,7 +35,9 @@ const Banner = () => {
         <h3 className={classes.title}>Returning user?</h3>
         <p className={classes.caption}>Log in to catch up</p>
         <div className={classes.buttons}>
-          <button className={classes.button}>log in</button>
+          <Link to='/login' className={classes.button}>
+            log in
+          </Link>
         </div>
       </div>
     </div>
