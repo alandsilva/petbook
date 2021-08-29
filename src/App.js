@@ -4,7 +4,6 @@ import {
   Switch,
   Route,
   Redirect,
-  useLocation,
 } from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
